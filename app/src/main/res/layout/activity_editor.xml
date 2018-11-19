@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_book_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_book_title"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/edit_book_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_book_price"
+        android:inputType="numberDecimal"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/decrease_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin"
+            android:text="@string/decrease_quantity" />
+
+        <EditText
+            android:id="@+id/edit_book_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_book_quantity"
+            android:inputType="number"
+            android:textAppearance="?android:textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/increase_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:text="@string/increase_quantity" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/edit_supplier_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_supplier_name"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <EditText
+        android:id="@+id/edit_supplier_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_supplier_address"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <EditText
+        android:id="@+id/edit_supplier_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hint_supplier_phone_number"
+        android:inputType="number"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <Button
+        android:id="@+id/order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/activity_margin"
+        android:text="@string/order"
+        android:textAlignment="center"/>
+
+</LinearLayout>

@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">Book Store</string>
+    <string name="editor_save_book_failed">Error in saving book data.</string>
+    <string name="editor_save_book_successful">Book Data Added in DB.</string>
+    <string name="hint_book_title">book title</string>
+    <string name="hint_book_price">book price</string>
+    <string name="hint_book_quantity">quantity</string>
+    <string name="hint_supplier_phone_number">supplier phone number</string>
+    <string name="hint_supplier_address">supplier address</string>
+    <string name="hint_supplier_name">supplier name</string>
+    <string name="editor_activity_label_add_book">Add Book</string>
+    <string name="editor_activity_label_edit_book">Edit Book</string>
+    <string name="no_data">No data</string>
+    <string name="action_save">save</string>
+    <string name="action_delete">delete</string>
+    <string name="editor_delete_book_failed">delete book failed</string>
+    <string name="editor_delete_book_successful">delete book success</string>
+    <string name="action_delete_all_entries">Delete All</string>
+    <string name="delete_all_books_successful">All books delered successfully</string>
+    <string name="delete_all_books_failed">All book deletion failed</string>
+    <string name="no_data_for_delete">No data for delete</string>
+    <string name="price_label">Price</string>
+    <string name="quantity_label">quantity</string>
+    <string name="sale">Sale</string>
+    <string name="book_sold">book sold</string>
+    <string name="no_book_for_sell">No book available for sell</string>
+    <string name="book_sold_failed">book sold failed</string>
+    <string name="decrease_quantity">-</string>
+    <string name="increase_quantity">+</string>
+    <string name="minimum_quantity_message">Quantity can\'t be less than 0</string>
+    <string name="order">Order</string>
+    <string name="feature_not_available">Feature not available</string>
+    <string name="phone_numbet_not_available">Phone numbet not available</string>
 </resources>
