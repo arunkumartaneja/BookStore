@@ -98,37 +98,38 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void showDeleteConfirmationDialog() {
-        // show a confirmation dialog before delete
-        AlertDialog.Builder alert = new AlertDialog.Builder(this);
-        alert.setTitle(R.string.delete_dialog_title);
-        alert.setMessage(R.string.delete_dialog_message);
-        alert.setIconAttribute(android.R.attr.alertDialogIcon);
-        alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                deleteAll();
-            }
-        });
-        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // close dialog
-                dialog.cancel();
-            }
-        });
-        alert.show();
+        if (mCursorAdapter.getCount() > 0) {
+            // show a confirmation dialog before delete
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle(R.string.delete_dialog_title);
+            alert.setMessage(R.string.delete_dialog_message);
+            alert.setIconAttribute(android.R.attr.alertDialogIcon);
+            alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteAll();
+                }
+            });
+            alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    // close dialog
+                    dialog.cancel();
+                }
+            });
+            alert.show();
+        } else {
+            Toast.makeText(this, getString(R.string.no_data_for_delete),
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void deleteAll() {
-        if (mCursorAdapter.getCount() > 0) {
-            int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
-            if (rowsDeleted > 0) {
-                Toast.makeText(this, getString(R.string.delete_all_books_failed),
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, getString(R.string.delete_all_books_successful),
-                        Toast.LENGTH_SHORT).show();
-            }
+        int rowsDeleted = getContentResolver().delete(BookEntry.CONTENT_URI, null, null);
+        if (rowsDeleted > 0) {
+            Toast.makeText(this, getString(R.string.delete_all_books_successful),
+                    Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, getString(R.string.no_data_for_delete),
+            Toast.makeText(this, getString(R.string.delete_all_books_failed),
                     Toast.LENGTH_SHORT).show();
         }
     }
