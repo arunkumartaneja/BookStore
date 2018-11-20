@@ -106,13 +106,13 @@ public class BookProvider extends ContentProvider {
 
         // Check that the price is not null and greater than 0
         Double price = values.getAsDouble(BookEntry.COLUMN_PRICE);
-        if (price == null || price <= 0) {
+        if (price == null || price < 0) {
             throw new IllegalArgumentException("Book requires a valid price");
         }
 
         // Check that the quantity is not null and greater than 0
         Integer quantity = values.getAsInteger(BookEntry.COLUMN_QUANTITY);
-        if (quantity == null || quantity <= 0) {
+        if (quantity == null || quantity < 0) {
             throw new IllegalArgumentException("Book requires a valid quantity");
         }
 
