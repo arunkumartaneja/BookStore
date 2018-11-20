@@ -1,7 +1,9 @@
 package com.abnd.android.bookstore;
 
+import android.app.AlertDialog;
 import android.content.ContentUris;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -86,13 +88,33 @@ public class BookActivity extends AppCompatActivity implements LoaderManager.Loa
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             case R.id.action_delete_all_entries:
-                deleteAll();
+                showDeleteConfirmationDialog();
                 return true;
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDeleteConfirmationDialog() {
+        // show a confirmation dialog before delete
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.delete_dialog_title);
+        alert.setMessage(R.string.delete_dialog_message);
+        alert.setIconAttribute(android.R.attr.alertDialogIcon);
+        alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deleteAll();
+            }
+        });
+        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // close dialog
+                dialog.cancel();
+            }
+        });
+        alert.show();
     }
 
     private void deleteAll() {

@@ -31,4 +31,7 @@
     <string name="order">Order</string>
     <string name="feature_not_available">Feature not available</string>
     <string name="phone_numbet_not_available">Phone numbet not available</string>
+    <string name="delete_dialog_title">Delete entry</string>
+    <string name="delete_dialog_message">Are you sure you want to delete?</string>
+    <string name="all_field_required">All fields are required</string>
 </resources>

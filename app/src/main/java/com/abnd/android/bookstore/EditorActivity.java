@@ -1,8 +1,10 @@
 package com.abnd.android.bookstore;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -109,7 +111,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 saveBook();
                 return true;
             case R.id.action_delete:
-                deleteBook();
+                showDeleteConfirmationDialog();
                 return true;
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
@@ -208,6 +210,26 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mSupplierAddressEditText.setText("");
     }
 
+    private void showDeleteConfirmationDialog() {
+        // show a confirmation dialog before delete
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.delete_dialog_title);
+        alert.setMessage(R.string.delete_dialog_message);
+        alert.setIconAttribute(android.R.attr.alertDialogIcon);
+        alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deleteBook();
+            }
+        });
+        alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // close dialog
+                dialog.cancel();
+            }
+        });
+        alert.show();
+    }
+
     private void deleteBook() {
         int rowsDeleted = getContentResolver().delete(mCurrentBookUri, null, null);
         if (rowsDeleted == 0) {
@@ -229,10 +251,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String supplierPhone = mSupplierPhoneNumberEditText.getText().toString().trim();
         String supplierAddress = mSupplierAddressEditText.getText().toString().trim();
 
-        if (TextUtils.isEmpty(title) && TextUtils.isEmpty(priceString) &&
-                TextUtils.isEmpty(quantityString) && TextUtils.isEmpty(supplierName) &&
-                TextUtils.isEmpty(supplierPhone) && TextUtils.isEmpty(supplierAddress)) {
-            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(title) || TextUtils.isEmpty(priceString) ||
+                TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(supplierName) ||
+                TextUtils.isEmpty(supplierPhone) || TextUtils.isEmpty(supplierAddress)) {
+            Toast.makeText(this, R.string.all_field_required, Toast.LENGTH_SHORT).show();
             return;
         }
 

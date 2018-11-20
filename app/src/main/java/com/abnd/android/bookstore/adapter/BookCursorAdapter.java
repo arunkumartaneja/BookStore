@@ -62,15 +62,7 @@ public class BookCursorAdapter extends CursorAdapter {
                     int updatedQuantity = currentQuantity - 1;
                     Uri saleUri = ContentUris.withAppendedId(BookEntry.CONTENT_URI, id);
                     ContentValues values = new ContentValues();
-
                     values.put(BookEntry.COLUMN_QUANTITY, updatedQuantity);
-//                    values.put(BookEntry.COLUMN_PRICE, price);
-//                    values.put(BookEntry.COLUMN_PRODUCT_NAME, productName);
-//
-//                    values.put(BookEntry.COLUMN_SUPPLIER_NAME, "supplierName");
-//                    values.put(BookEntry.COLUMN_SUPPLIER_PHONE_NUMBER, 897989);
-//                    values.put(BookEntry.COLUMN_SUPPLIER_ADDRESS, "sdsddsdds");
-
                     int rowsUpdated = context.getContentResolver().update(saleUri, values, null, null);
                     if (rowsUpdated > 0) {
                         Toast.makeText(context, R.string.book_sold, Toast.LENGTH_SHORT).show();
